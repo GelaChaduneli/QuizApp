@@ -296,8 +296,7 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:orientation="horizontal">
 
@@ -351,6 +350,51 @@
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/changable_area"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="25dp"
+                android:text="Your last result: "
+                android:textSize="20dp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/last_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/5"
+                android:textSize="20dp">
+
+            </TextView>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
     <Button
         android:id="@+id/submit_button"
         android:layout_width="wrap_content"
@@ -360,7 +404,6 @@
         android:textSize="30dp">
 
     </Button>
-
 
 
 </LinearLayout>

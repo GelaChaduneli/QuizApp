@@ -6,11 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class QuizActivity extends AppCompatActivity {
+public class QuizActivity extends Activity {
 
     private Button submit;
     public static Integer counter=0;
@@ -19,6 +20,10 @@ public class QuizActivity extends AppCompatActivity {
     private CheckBox checkBox3;
     private CheckBox checkBox4;
     private CheckBox checkBox5;
+    private TextView mStatus;
+    private TextView mLastResult;
+    SharePreferenceManager manager;
+
 
 
     @Override
@@ -26,12 +31,14 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         submit=findViewById(R.id.submit_button);
+        mLastResult.findViewById(R.id.last_result);
         checkBox1=findViewById(R.id.cb1);
         checkBox2=findViewById(R.id.cb2);
         checkBox3=findViewById(R.id.cb3);
         checkBox4=findViewById(R.id.cb4);
         checkBox5=findViewById(R.id.cb5);
-
+        mStatus=findViewById(R.id.status);
+        manager=new SharePreferenceManager(this);
 
 
 
@@ -46,6 +53,27 @@ public class QuizActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initView();
+        counter=0;
+    }
+
+    private  void initView(){
+        String lastResult=manager.read(ResultActivity.LAST_RES);
+        if(lastResult!=null){
+            mStatus.setText("Your last result: ");
+            mLastResult.setText((lastResult));
+        }else {
+            mStatus.setText( "Never Played");
+        }
+        findViewById(R.id.changable_area).setVisibility(lastResult!=null ? View.VISIBLE : View.GONE);
+    }
+
+
+
 
     public void myCount(){
         if(checkBox1.isChecked()){
